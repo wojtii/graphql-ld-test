@@ -11,7 +11,7 @@ export const ActorMovies = React.memo(({ name }) => {
     <div>
       <h1>{fullName}</h1>
       <GraphQlLdProvider
-        sources={["http://dbpedia.org/sparql"]}
+        sources={["https://fragments.dbpedia.org/2016-04/en"]}
         context={{
           Film: "http://dbpedia.org/ontology/Film",
           label: {

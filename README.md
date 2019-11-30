@@ -1,3 +1,11 @@
+# About
+
+This project is created to test how can one access linked data through GraphQL queries.
+It is important because languages like SPARQL are complicated and require quite a
+lot of knowledge to start with, which limits usage of semantic web. Main focus
+of testing is [graphql-ld.js](https://github.com/rubensworks/graphql-ld.js)
+through its [React components](https://github.com/rubensworks/solid-react-graphql-ld.js).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
