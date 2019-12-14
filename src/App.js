@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import "./App.css";
-import { ActorMovies } from "./ActorMovies";
+import "react-bulma-components/dist/react-bulma-components.min.css";
+import { Container } from "react-bulma-components";
+import { Navbar } from "./Navbar";
+import { Actor } from "./ActorMovies";
+import { Dev } from "./Dev";
 
 const App = () => {
-  const [actor, setActor] = useState("Tomasz Karolak");
-  const [formActor, setFormActor] = useState();
-  const handleSubmit = e => {
-    e.preventDefault();
-    setActor(formActor);
+  const [item, setItem] = useState("actor");
+  const getExample = itemName => {
+    switch (itemName) {
+      case "actor":
+        return <Actor />;
+      case "software":
+        return <Dev />;
+      default:
+        return <p>Not implemented</p>;
+    }
   };
+
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <label>
-          Actor name
-          <input type="text" onChange={e => setFormActor(e.target.value)} />
-        </label>
-        <input type="submit" value="Search" />
-      </form>
-      <ActorMovies name={actor} />
+      <Navbar setItem={setItem} />
+      <Container>{getExample(item)}</Container>
     </div>
   );
 };
