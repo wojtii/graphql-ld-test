@@ -16,8 +16,11 @@ export const Navbar = ({ setItem }) => {
           <BulmaNavbar.Item onClick={() => setItem("software")}>
             Softwares
           </BulmaNavbar.Item>
-          <BulmaNavbar.Item onClick={() => setItem("sth else")}>
-            ...
+          <BulmaNavbar.Item onClick={() => setItem("nobles")}>
+            Nobles
+          </BulmaNavbar.Item>
+          <BulmaNavbar.Item onClick={() => setItem("musicians")}>
+            Musicians
           </BulmaNavbar.Item>
         </BulmaNavbar.Container>
       </BulmaNavbar.Menu>

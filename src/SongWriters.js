@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Client } from "./Client";
 import { Form, Button, Box } from "react-bulma-components";
 
-export const ActorMovies = React.memo(({ name }) => {
+export const SongWriters = React.memo(({ name }) => {
   const [fullName, setFullName] = useState(name);
   useEffect(() => {
     setFullName(name);
@@ -10,24 +10,25 @@ export const ActorMovies = React.memo(({ name }) => {
 
   const sources = ["https://fragments.dbpedia.org/2016-04/en"];
   const context = {
-    Film: "http://dbpedia.org/ontology/Film",
-    label: {
+    label: "http://www.w3.org/2000/01/rdf-schema#label",
+    label_en: {
       "@id": "http://www.w3.org/2000/01/rdf-schema#label",
       "@language": "en"
     },
-    starring: "http://dbpedia.org/ontology/starring"
+    writer: "http://dbpedia.org/ontology/writer",
+    artist: "http://dbpedia.org/ontology/musicalArtist"
   };
   const query = `{
-    id @single
-    ... on Film {
-      starring(label: "${fullName}") @single
-    }
-  }`;
+  label
+  writer(label_en: "${fullName}")
+  artist { label }
+}`;
   const display = data => {
-    return data.map((e, i) => {
-      return <li key={i}>{e["id"]}</li>;
+    return data[0]["label"].map((e, i) => {
+      return <li key={i}>{e}</li>;
     });
   };
+
   return (
     <div>
       <Client
@@ -40,12 +41,12 @@ export const ActorMovies = React.memo(({ name }) => {
   );
 });
 
-export const Actor = () => {
-  const [actor, setActor] = useState("");
-  const [formActor, setFormActor] = useState();
+export const SongWriter = () => {
+  const [name, setName] = useState("");
+  const [formName, setFormName] = useState();
   const handleSubmit = e => {
     e.preventDefault();
-    setActor(formActor);
+    setName(formName);
   };
   return (
     <div>
@@ -54,9 +55,9 @@ export const Actor = () => {
           <Form.Field className="has-addons">
             <Form.Input
               type="text"
-              placeholder="actor name"
-              onChange={e => setFormActor(e.target.value)}
-              value={formActor}
+              placeholder="Artist name"
+              onChange={e => setFormName(e.target.value)}
+              value={formName}
             />
             <Button className="is-primary" onClick={handleSubmit}>
               Run
@@ -65,7 +66,7 @@ export const Actor = () => {
         </form>
       </Box>
 
-      {actor !== "" && <ActorMovies name={actor} />}
+      {name !== "" && <SongWriters name={name} />}
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { Container } from "react-bulma-components";
 import { Navbar } from "./Navbar";
 import { Actor } from "./ActorMovies";
 import { Dev } from "./Dev";
+import { Nobles } from "./Nobles";
+import { SongWriter } from "./SongWriters";
 
 const App = () => {
   const [item, setItem] = useState("actor");
@@ -14,6 +16,10 @@ const App = () => {
         return <Actor />;
       case "software":
         return <Dev />;
+      case "nobles":
+        return <Nobles />;
+      case "musicians":
+        return <SongWriter />;
       default:
         return <p>Not implemented</p>;
     }

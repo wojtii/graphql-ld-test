@@ -5,14 +5,14 @@ import { Converter } from "graphql-to-sparql";
 import { toSparql } from "sparqlalgebrajs";
 import { Columns, Loader, Box, Content } from "react-bulma-components";
 
-export const Client = ({ sources, context, query, displayField }) => {
+export const Client = ({ sources, context, query, display }) => {
   const sparqlQuery = toSparql(
     new Converter().graphqlToSparqlAlgebraRawContext(query, context)
   );
 
   return (
     <div>
-      <Box>
+      <Box style={{ marginTop: "1em" }}>
         <Columns>
           <Columns.Column>
             <Content>
@@ -50,12 +50,7 @@ export const Client = ({ sources, context, query, displayField }) => {
                 <strong>Results</strong>
                 <dl>
                   <dd>
-                    <ul>
-                      {data &&
-                        data.map((a, idx) => (
-                          <li key={idx}>{a[displayField]}</li>
-                        ))}
-                    </ul>
+                    <ul>{data && display(data)}</ul>
                   </dd>
                 </dl>
               </Box>
